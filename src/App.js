@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
 import StoryList from './Components/StoryList'
-import CommentList from './Components/CommentList'
+import StoryPage from './Components/StoryPage'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+
+// TODO: add filter for best, new, and top topstories
+// TODO: add story summary before comments
+// TODO: add link to github
+// TODO: add to my porfolio
+// TODO: add recursive comments
+// TODO: formatting and styling
 
 
 class App extends Component {
@@ -13,9 +20,15 @@ class App extends Component {
       loadedIDList: false,
       loadedDetailedList:false,
       storyDetailList:[],
-      currentStory:null
-
+      currentStory:null,
     }
+  }
+
+  incrementCounter = () =>{
+    console.log("incrementCounter");
+    this.setState({
+      counter: this.state.counter + 1
+    })
   }
 
   componentDidMount(){
@@ -47,35 +60,41 @@ class App extends Component {
       })
   }
 
-  getStoryInfo(story){
+  getStoryInfo = (story)=>{
+    console.log("succesfully passed to parent");
     console.log(story);
-    this.setState({currentStory:story})
+    this.setState({
+      currentStory:story
+    })
   }
 
   render() {
     return (
-      <Router>
-        <div className="App">
-          <header className="App-header">
-            <Link to='/'>
-              <h1 className="App-title">Hacker News Reader</h1>
-            </Link>
-          </header>
-          <Route exact={true} path='/' render={()=>
-            <StoryList
-              loadedDetailedList = {this.state.loadedDetailedList}
-              storyList={this.state.storyDetailList}
-              getStoryInfo={this.getStoryInfo}
-              currentTime={parseInt(this.state.currentTime, 10)}
-            />}/>
-          <Route path='/story/:storyId' render={(props)=>
-            <CommentList
-              story={this.state.currentStory}
-              {...props}
-            />}
-          />
-        </div>
-      </Router>
+      <div className="App">
+        <Router>
+          <div>
+            <header className="App-header">
+              <Link to='/'>
+                <h1 className="App-title">Hacker News Reader</h1>
+              </Link>
+            </header>
+            <Route exact={true} path='/' render={()=>
+              <StoryList
+                loadedDetailedList = {this.state.loadedDetailedList}
+                storyList={this.state.storyDetailList}
+                getStoryInfo={this.getStoryInfo}
+                currentTime={parseInt(this.state.currentTime, 10)}
+              />}/>
+            <Route path='/story/:storyId' render={(props)=>
+              <StoryPage
+                currentTime={this.state.currentTime}
+                story={this.state.currentStory}
+                {...props}
+              />}
+            />
+          </div>
+        </Router>
+      </div>
     );
   }
 }

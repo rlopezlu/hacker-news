@@ -11,6 +11,7 @@ export default function StoryList(props){
             story={story}
             getStoryInfo={props.getStoryInfo}
             key={story.id}
+            showCommentsButton={true}
             currentTime={props.currentTime}
           />)}
       </div>
