@@ -1,6 +1,8 @@
 import React from 'react'
+import '../Styles/Comment.css'
 const Entities = require('html-entities').AllHtmlEntities;
 const entities = new Entities();
+
 
 export default function Comment(props){
   return(
