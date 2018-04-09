@@ -6,13 +6,10 @@
   border-top: 1px solid #3498db;
   border-right: 1px solid #3498db;
   border-left: 1px solid #3498db;
-
 }
 
 .votes{
-
   height: 100%;
-  /* background-color: yellow; */
   padding: 1em;
   text-align: center;
 }
@@ -29,6 +26,13 @@
   display: flex;
   justify-content: space-between;
 }
+
+@media (max-width: 768px) {
+  .subContent{
+    flex-direction: column;
+  }
+}
+
 .title{
   /* color: white; */
   font-size: 1.6em;

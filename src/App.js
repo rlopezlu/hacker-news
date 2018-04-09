@@ -10,6 +10,7 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 // TODO: add recursive comments
 // TODO: formatting and styling
 // TODO: create data component to avoid repeating code in post / comment
+// TODO: add mobile compatibility
 
 
 class App extends Component {
