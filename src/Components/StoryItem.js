@@ -1,6 +1,7 @@
 import React from 'react'
 import '../Styles/StoryItem.css'
 import {Link} from 'react-router-dom'
+var parse = require('url-parse')
 
 export default function StoryItem(props){
 
@@ -13,9 +14,17 @@ export default function StoryItem(props){
      return Math.floor(minutes / 60) + " hours ago"
   }
 
+  function getShortURL(){
+    return parse(props.story.url, true).hostname
+  }
+
   function handleClick(){
     console.log("data passed up to parent");
     props.getStoryInfo(props.story)
+  }
+
+  function numberOfComments(){
+    return props.story.descendants || '0'
   }
 
   return(
@@ -26,13 +35,14 @@ export default function StoryItem(props){
           <p className="title">{props.story.title}</p>
         </a>
         <div className="subContent">
+          <p>{getShortURL()}</p>
           <p>By: {props.story.by}</p>
           <p> {calculateTime()}</p>
           {props.showCommentsButton &&
             <Link to={'story/'+props.story.id}
               onClick={handleClick}>
               <button>
-                <p>{props.story.descendants} comments </p>
+                <p>{numberOfComments()} comments </p>
               </button>
             </Link>
           }

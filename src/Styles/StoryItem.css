@@ -1,17 +1,28 @@
 .StoryItem{
-  background-color: #3498db;
+  /* background-color: #3498db; */
   display: flex;
-  border: 1px solid white;
+  /* border: 1px solid white; */
+  border-bottom: 1px solid #3498db;
+  border-top: 1px solid #3498db;
+  border-right: 1px solid #3498db;
+  border-left: 1px solid #3498db;
+
 }
 
 .votes{
-  border-right: 1px solid white;
-  padding: 0 1em;
+
+  height: 100%;
+  /* background-color: yellow; */
+  padding: 1em;
   text-align: center;
 }
 
 .storyContent{
-  padding-left: 1em;
+  border-left: 1px solid #3498db;
+  width: 100%;
+  padding: .5em;
+  display: flex;
+  flex-direction: column;
 }
 
 .subContent{
@@ -19,6 +30,6 @@
   justify-content: space-between;
 }
 .title{
-  color: white;
+  /* color: white; */
   font-size: 1.6em;
 }

@@ -5,11 +5,11 @@ import StoryPage from './Components/StoryPage'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 
 // TODO: add filter for best, new, and top topstories
-// TODO: add story summary before comments
 // TODO: add link to github
 // TODO: add to my porfolio
 // TODO: add recursive comments
 // TODO: formatting and styling
+// TODO: create data component to avoid repeating code in post / comment
 
 
 class App extends Component {
@@ -41,7 +41,7 @@ class App extends Component {
           console.log(myJson)
           this.setState({
             loadedIDList: true,
-            storyList: myJson.slice(0,10)
+            storyList: myJson.slice(0,20)
           }, this.getAllData)
         })
   }
