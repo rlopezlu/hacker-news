@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import Comment from './Comment'
 import StoryItem from './StoryItem'
 import '../Styles/StoryPage.css'
+const Entities = require('html-entities').AllHtmlEntities;
+const entities = new Entities();
 
 export default class StoryPage extends Component{
 
@@ -54,6 +56,18 @@ export default class StoryPage extends Component{
 
   }
 
+  getStoryText(){
+    if('text' in this.state.storyData){
+      return(
+        <div className="HackerStory">
+          {entities.decode(this.state.storyData.text)
+            .replace(/<(?:.|\n)*?>/gm, '')}
+        </div>
+    )}else{
+    return null
+    }
+  }
+
   render(){
     return(
       <div className="StoryPage">
@@ -62,7 +76,11 @@ export default class StoryPage extends Component{
           getStoryInfo={null}
           showCommentsButton={false}
           currentTime={this.props.currentTime}
-         />}
+                                 />}
+        {this.state.storyData &&
+          this.getStoryText()
+        }
+        <p>Comments and Replies</p>
         <div className="CommentList">
           {this.state.loadedComments && this.state.comments.map(comment=>{
             return <Comment

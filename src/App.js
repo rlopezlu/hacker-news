@@ -2,15 +2,19 @@ import React, { Component } from 'react';
 import './App.css';
 import StoryList from './Components/StoryList'
 import StoryPage from './Components/StoryPage'
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom'
 
 // TODO: add filter for best, new, and top topstories
 // TODO: add link to github
-// TODO: add to my porfolio
 // TODO: add recursive comments
-// TODO: formatting and styling
-// TODO: create data component to avoid repeating code in post / comment
-// TODO: add mobile compatibility
+// TODO: option to hide comments
+// TODO: add loading indicator for home and comments
+// TODO: load 20 articles, then load when button is pressed
+// TODO: add reload button
+// TODO: create date component to avoid repeating code in post / comment
+// TODO: Home page stories are loaded for entire app, only load for home page
+// TODO: load comments with HTML formatting instead of just removing it
+// TODO: clicking Hacker News story links to comments page instead
 
 
 class App extends Component {
@@ -42,7 +46,7 @@ class App extends Component {
           console.log(myJson)
           this.setState({
             loadedIDList: true,
-            storyList: myJson.slice(0,20)
+            storyList: myJson.slice(0,50)
           }, this.getAllData)
         })
   }
@@ -75,24 +79,27 @@ class App extends Component {
         <Router>
           <div>
             <header className="App-header">
-              <Link to='/'>
+              <Link to='/hacker-news'>
                 <h1 className="App-title">Hacker News Reader</h1>
               </Link>
             </header>
-            <Route exact={true} path='/' render={()=>
-              <StoryList
-                loadedDetailedList = {this.state.loadedDetailedList}
-                storyList={this.state.storyDetailList}
-                getStoryInfo={this.getStoryInfo}
-                currentTime={parseInt(this.state.currentTime, 10)}
-              />}/>
-            <Route path='/story/:storyId' render={(props)=>
-              <StoryPage
-                currentTime={this.state.currentTime}
-                story={this.state.currentStory}
-                {...props}
-              />}
-            />
+            <Switch>
+              <Route path='/hacker-news/story/:storyId' render={(props)=>
+                <StoryPage
+                  currentTime={this.state.currentTime}
+                  story={this.state.currentStory}
+                  {...props}
+                />}
+              />
+              <Route path='/hacker-news' render={()=>
+                <StoryList
+                  loadedDetailedList = {this.state.loadedDetailedList}
+                  storyList={this.state.storyDetailList}
+                  getStoryInfo={this.getStoryInfo}
+                  currentTime={parseInt(this.state.currentTime, 10)}
+                />}/>
+
+            </Switch>
           </div>
         </Router>
       </div>

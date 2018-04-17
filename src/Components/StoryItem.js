@@ -15,7 +15,11 @@ export default function StoryItem(props){
   }
 
   function getShortURL(){
-    return parse(props.story.url, true).hostname
+    if(props.story.url){
+      return parse(props.story.url, true).hostname
+    }
+    return 'Hacker News'
+
   }
 
   function handleClick(){
@@ -28,26 +32,28 @@ export default function StoryItem(props){
   }
 
   return(
-    <div className="StoryItem">
-      <p className="votes">{props.story.score} <br/> votes </p>
-      <div className="storyContent">
-        <a href={props.story.url}>
-          <p className="title">{props.story.title}</p>
-        </a>
-        <div className="subContent">
-          <p>{getShortURL()}</p>
-          <p>By: {props.story.by}</p>
-          <p> {calculateTime()}</p>
-          {props.showCommentsButton &&
-            <Link to={'story/'+props.story.id}
-              onClick={handleClick}>
-              <button>
-                <p>{numberOfComments()} comments </p>
-              </button>
-            </Link>
-          }
+    // <div className="StoryItem">
+      <a className="linkWrapper StoryItem" href={props.story.url}>
+        <span className="votes">{props.story.score} <br/> votes </span>
+        <div className="storyContent">
+          <div>
+            <p className="title">{props.story.title}</p>
+            <span>{getShortURL()}</span>
+          </div>
+          <div className="subContent">
+            {/* <p>{getShortURL()}</p> */}
+            <p>{calculateTime()} by {props.story.by}</p>
+            {props.showCommentsButton &&
+              <Link to={'/hacker-news/story/'+props.story.id}
+                onClick={handleClick}>
+                <button>
+                  <p>{numberOfComments()} comments </p>
+                </button>
+              </Link>
+            }
+          </div>
         </div>
-      </div>
-    </div>
+        </a>
+    // </div>
   )
 }

@@ -1,6 +1,6 @@
 .App {
   /* text-align: center; */
-  width: 60%;
+  width: 50%;
   margin: auto;
 }
 
@@ -9,4 +9,10 @@
   .App{
     width: 90%;
   }
+}
+
+html, body{
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }

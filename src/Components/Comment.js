@@ -14,17 +14,42 @@ export default function Comment(props){
      return Math.floor(minutes / 60) + " hours ago"
   }
 
-  return(
-    <div className="Comment">
-      <div>
-        <span>Author: {props.comment.by}   </span>
-        <span>   Created: {calculateTime()}</span>
-      </div>
+  function checkForKids(){
 
-      {/* Test had HTML entities and even html tags. the following deletes them */}
-      <p>{entities.decode(props.comment.text)
-        .replace(/<(?:.|\n)*?>/gm, '')}
-      </p>
-    </div>
+    if('kids' in props.comment){
+      console.log(props.comment.id);
+      return props.comment.kids.length
+    }
+    return 0;
+  }
+
+  function CheckForDeleted(){
+    if(props.comment.deleted){
+      return null
+    }
+    return (
+      <div className="Comment">
+        <div className="CommentWrapper">
+          <div className="comment-info">
+            <span>Author: {props.comment.by}</span>
+            <span>Created: {calculateTime()}</span>
+          </div>
+
+          {/* Test had HTML entities and even html tags. the following deletes them */}
+          <p className="comment-content">{entities.decode(props.comment.text)
+            .replace(/<(?:.|\n)*?>/gm, '')}
+          </p>
+          <p>
+            {checkForKids() + " replies"}
+          </p>
+        </div>
+      </div>
+    )
+
+  }
+
+  return(
+    CheckForDeleted()
   )
+
 }
