@@ -27,33 +27,40 @@ export default function StoryItem(props){
     props.getStoryInfo(props.story)
   }
 
+  function handleStoryRedirect(){
+    let win = window.open(props.story.url, '_blank')
+  }
+
   function numberOfComments(){
     return props.story.descendants || '0'
   }
 
   return(
-    // <div className="StoryItem">
-      <a className="linkWrapper StoryItem" href={props.story.url}>
-        <span className="votes">{props.story.score} <br/> votes </span>
-        <div className="storyContent">
-          <div>
-            <p className="title">{props.story.title}</p>
-            <span>{getShortURL()}</span>
+      <div className="StoryItem">
+        <div className="clickable" onClick={handleStoryRedirect}>
+
+          <div className="title">
+            <p >{props.story.title}</p>
+
           </div>
-          <div className="subContent">
-            {/* <p>{getShortURL()}</p> */}
-            <p>{calculateTime()} by {props.story.by}</p>
+        </div>
+        <div className="subContent">
+          <div className="votes">
+            <span className="voteCount">{props.story.score }</span> votes
+          </div>
+          <p>{getShortURL()}</p>
+          <p>{calculateTime()} by {props.story.by}</p>
+          <div className="comments">
             {props.showCommentsButton &&
-              <Link to={'/hacker-news/story/'+props.story.id}
+              <Link className="linkButton" to={'/hacker-news/story/'+props.story.id}
                 onClick={handleClick}>
                 <button>
-                  <p>{numberOfComments()} comments </p>
+                  {numberOfComments()} comments
                 </button>
               </Link>
             }
           </div>
         </div>
-        </a>
-    // </div>
-  )
-}
+      </div>
+        )
+        }
