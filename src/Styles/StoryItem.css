@@ -50,11 +50,6 @@
   display: inline-block;
 }
 
-.StoryItem .votes{
-  /* font-size: 1.3em; */
-  text-align: center;
-}
-
 .subContent{
   margin-top: 1em;
   display: flex;

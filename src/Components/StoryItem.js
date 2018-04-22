@@ -28,7 +28,7 @@ export default function StoryItem(props){
   }
 
   function handleStoryRedirect(){
-    let win = window.open(props.story.url, '_blank')
+    window.open(props.story.url, '_blank')
   }
 
   function numberOfComments(){
@@ -45,9 +45,7 @@ export default function StoryItem(props){
           </div>
         </div>
         <div className="subContent">
-          <div className="votes">
-            <span className="voteCount">{props.story.score }</span> votes
-          </div>
+          <p className="votes">{props.story.score+ " votes" }</p>
           <p>{getShortURL()}</p>
           <p>{calculateTime()} by {props.story.by}</p>
           <div className="comments">
