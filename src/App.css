@@ -1,7 +1,13 @@
 .App {
   /* text-align: center; */
-  width: 50%;
+  width: 100%;
   margin: auto;
+  background-color: #ecf0f1;
+}
+
+.routerWrapper{
+  margin: auto;
+  width: 70%;
 }
 
 
@@ -12,6 +18,7 @@
 }
 
 html, body{
+  background-color: #ecf0f1;
   margin: 0;
   padding: 0;
   width: 100%;

@@ -76,8 +76,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Router>
-          <div>
+        <Router >
+          <div className="routerWrapper">
             <header className="App-header">
               <Link to='/hacker-news'>
                 <h1 className="App-title">Hacker News Reader</h1>
