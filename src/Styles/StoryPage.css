@@ -5,6 +5,8 @@
 .HackerStory{
   font-size: 1.1em;
   margin: 1em 0;
+  background-color: white;
+  overflow-wrap: break-word;
   padding: 1em;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
