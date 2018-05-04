@@ -10,7 +10,7 @@ import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom'
 // TODO: option to hide comments
 // TODO: add loading indicator for home and comments
 // TODO: load 20 articles, then load when button is pressed
-// TODO: add reload button
+// TODO: add refresh button
 // TODO: create date component to avoid repeating code in post / comment
 // TODO: Home page stories are loaded for entire app, only load for home page
 // TODO: load comments with HTML formatting instead of just removing it
@@ -79,7 +79,7 @@ class App extends Component {
         <Router >
           <div className="routerWrapper">
             <header className="App-header">
-              <Link to='/hacker-news'>
+              <Link to='/hacker-news/'>
                 <h1 className="App-title">Hacker News Reader</h1>
               </Link>
             </header>
