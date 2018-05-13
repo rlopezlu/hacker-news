@@ -38,26 +38,35 @@ export default function StoryItem(props){
   return(
       <div className="StoryItem">
         <div className="clickable" onClick={handleStoryRedirect}>
-
           <div className="title">
             <p >{props.story.title}</p>
-
           </div>
         </div>
         <div className="subContent">
-          <p className="votes">{props.story.score+ " votes" }</p>
-          <p>{getShortURL()}</p>
-          <p>{calculateTime()} by {props.story.by}</p>
-          <div className="comments">
-            {props.showCommentsButton &&
-              <Link className="linkButton" to={'/hacker-news/story/'+props.story.id}
-                onClick={handleClick}>
-                <button>
-                  {numberOfComments()} comments
-                </button>
-              </Link>
-            }
+          <div className="leftSide">
+            <div className="votesAndAuthor">
+              <span className="votes">{props.story.score}</span> <span> votes • </span>
+              <span>by {props.story.by}</span>
+            </div>
+
+            <div className="timeAndSite">
+              <span>{getShortURL() + " •"}</span>
+              <span> {calculateTime()}</span>
+            </div>
           </div>
+          <div className="rightSide">
+            <div className="comments">
+              {props.showCommentsButton &&
+                <Link className="linkButton" to={'/hacker-news/story/'+props.story.id}
+                  onClick={handleClick}>
+                  <button>
+                    {numberOfComments()} comments
+                  </button>
+                </Link>
+              }
+            </div>
+          </div>
+
         </div>
       </div>
         )

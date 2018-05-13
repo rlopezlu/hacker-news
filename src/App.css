@@ -5,6 +5,10 @@
   background-color: #ecf0f1;
 }
 
+.App-title{
+  width: 100%;
+}
+
 .routerWrapper{
   margin: auto;
   width: 60%;
@@ -12,8 +16,15 @@
 
 
 @media (max-width: 768px) {
-  .App{
+  /* .App{
     width: 90%;
+  } */
+  .routerWrapper{
+    width: 90%;
+  }
+
+  .App-title{
+    font-size: 2em;
   }
 }
 
